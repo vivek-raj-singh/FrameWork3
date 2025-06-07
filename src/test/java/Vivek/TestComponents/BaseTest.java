@@ -8,10 +8,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +17,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 public class BaseTest {
@@ -31,8 +30,19 @@ public class BaseTest {
         String BrowserName = prop.getProperty("Browser");
 
         if (BrowserName.equalsIgnoreCase("chrome")) {
-            driver = new ChromeDriver();
+            Map<String, Object> prefs = new HashMap<>();
+            prefs.put("safebrowsing.enabled", true);
+            prefs.put("credentials_enable_service", false);
+            prefs.put("profile.password_manager_enabled", false);
+            prefs.put("profile.password_manager_leak_detection", false);
+
+            ChromeOptions options = new ChromeOptions();
+            options.setExperimentalOption("prefs", prefs);
+            options.addArguments("--force-device-scale-factor=0.8");
+
+            driver = new ChromeDriver(options);
         }
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         return driver;

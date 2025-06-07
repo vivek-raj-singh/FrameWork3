@@ -15,20 +15,22 @@ public class Listeners extends BaseTest implements ITestListener {
 
     ExtentReports extent = ExtentReporterNG.getReportObject();
     ExtentTest Test;
+    ThreadLocal <ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 
     public void onTestStart(ITestResult result) {
         Test=extent.createTest(result.getMethod().getMethodName());
+        extentTest.set(Test);
         // not implemented
     }
     public void onTestSuccess(ITestResult result) {
-        Test.log(Status.PASS,"test is passed");
+        extentTest.get().log(Status.PASS,"test is passed");
         // not implemented
     }
 
     public void onTestFailure(ITestResult result) {
         // not implemented
 //        Test.log(Status.FAIL,"test is failed");
-        Test.fail(result.getThrowable());
+        extentTest.get().fail(result.getThrowable());
         try {
             driver =(WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
         } catch (Exception e) {
@@ -42,7 +44,7 @@ public class Listeners extends BaseTest implements ITestListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Test.addScreenCaptureFromPath(filePath,result.getMethod().getMethodName());
+        extentTest.get().addScreenCaptureFromPath(filePath,result.getMethod().getMethodName());
     }
 
     public void onFinish(ITestContext context) {

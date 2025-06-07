@@ -2,9 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite parallel="tests" name="All Test Suite">
-<!--    <listeners>-->
-<!--    <listener class-name="Vivek.TestComponents.Listeners"> </listener>-->
-<!--    </listeners>-->
+    <listeners>
+    <listener class-name="Vivek.TestComponents.Listeners"> </listener>
+    </listeners>
     <test name="Framework 3 Test Suite" verbose="2">
         <classes>
             <class name="Vivek.Tests.EndtoEndEcomm"/>

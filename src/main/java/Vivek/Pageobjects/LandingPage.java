@@ -42,6 +42,8 @@ public class LandingPage extends AbstractsComponents {
 
     }
     public void Goto(){
+
         driver.get("https://rahulshettyacademy.com/client");
+
     }
 }

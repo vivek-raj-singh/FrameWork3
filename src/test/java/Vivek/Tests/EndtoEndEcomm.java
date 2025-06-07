@@ -17,11 +17,11 @@ import java.util.List;
 public class EndtoEndEcomm extends BaseTest {
         String ProductName= "ZARA COAT 3";
     
-        @Test(dataProvider="getData",groups = {"purchase"})
+        @Test(dataProvider="getData")
         public void submitOrder(HashMap<String,String> input ) throws IOException {
 
         ProductCatalogue productCatalogue=landingPage.loginApplication(input.get("email"),input.get("pass"));
-        List<WebElement> products =productCatalogue.getProductList();
+        List<WebElement> productS =productCatalogue.getProductList();
         productCatalogue.addProductToCart(input.get("product"));
         CartPage cartPage= productCatalogue.GoToCart();
         Boolean match= cartPage.VerifyProductDisplay(input.get("product"));
@@ -34,7 +34,6 @@ public class EndtoEndEcomm extends BaseTest {
 
     }
     @Test(dependsOnMethods = {"submitOrder"})
-//    @Test
     public void OrderHistoryTest(){
         ProductCatalogue productCatalogue=landingPage.loginApplication("rajvivek1206@gmail.com","Vivek@123");
 
@@ -46,7 +45,7 @@ public class EndtoEndEcomm extends BaseTest {
     @DataProvider
     public Object[][] getData() throws IOException {
        List<HashMap<String,String>> data= getJsonDataToMap(System.getProperty("user.dir")+"//src//test//java//Vivek//Data//purchaseData.json");
-        return new Object[][] {{data.get(0)},{data.get(1)}};
+        return new Object[][] {{data.get(1)},{data.get(0)}};
     }
 
 

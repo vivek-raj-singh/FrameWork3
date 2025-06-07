@@ -16,7 +16,7 @@ public class orderHeader extends AbstractsComponents {
         PageFactory.initElements(driver,this);
     }
     @FindBy(css="tr td:nth-child(3)")
-    private  List<WebElement> orderProducts;
+    public  List<WebElement> orderProducts;
 
 
     public Boolean VerifyOrderDisplay(String ProductName) {
