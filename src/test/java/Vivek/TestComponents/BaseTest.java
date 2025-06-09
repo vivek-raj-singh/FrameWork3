@@ -51,7 +51,7 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public LandingPage launchApplication() throws IOException {
-        System.out.println("this is testff");
+//        System.out.println("this is testff");
         driver= initilizeDriver();
         landingPage =new LandingPage(driver);
 
