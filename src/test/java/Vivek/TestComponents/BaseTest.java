@@ -48,8 +48,10 @@ public class BaseTest {
         return driver;
 
     }
+
     @BeforeMethod(alwaysRun = true)
     public LandingPage launchApplication() throws IOException {
+        System.out.println("this is test");
         driver= initilizeDriver();
         landingPage =new LandingPage(driver);
 
