@@ -63,6 +63,7 @@ public class BaseTest {
         ObjectMapper mapper=new ObjectMapper();
         List<HashMap<String,String>> data=mapper.readValue(jsonContent, new TypeReference<List<HashMap<String, String>>>(){});
         return data;
+        sout("test")
 
     }
     public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
