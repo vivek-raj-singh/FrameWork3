@@ -53,6 +53,8 @@ public class BaseTest {
     public LandingPage launchApplication() throws IOException {
 //        System.out.println("this is testff");
         driver= initilizeDriver();
+
+
         landingPage =new LandingPage(driver);
 
         landingPage.Goto();
@@ -63,6 +65,7 @@ public class BaseTest {
         ObjectMapper mapper=new ObjectMapper();
         List<HashMap<String,String>> data=mapper.readValue(jsonContent, new TypeReference<List<HashMap<String, String>>>(){});
         return data;
+
 
 
     }
