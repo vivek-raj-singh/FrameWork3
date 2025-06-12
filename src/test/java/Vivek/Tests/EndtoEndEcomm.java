@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class EndtoEndEcomm extends BaseTest {
-        String ProductName= "ZARA COAT 3";
+        String ProductName= "ZARA COAT 2";
     
         @Test(dataProvider="getData")
         public void submitOrder(HashMap<String,String> input ) throws IOException {
